@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Informações de Pagamento</title>
+    <!-- Favicon -->
+        <link rel="icon" href="img/favicon.png">
+        
+        <!-- Google Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Poppins:200i,300,300i,400,400i,500,500i,600,600i,700,700i,800,800i,900,900i&display=swap" rel="stylesheet">
+
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="css/bootstrap.min.css">
+        <!-- Nice Select CSS -->
+        <link rel="stylesheet" href="css/nice-select.css">
+        <!-- Font Awesome CSS -->
+        <link rel="stylesheet" href="css/font-awesome.min.css">
+        <!-- icofont CSS -->
+        <link rel="stylesheet" href="css/icofont.css">
+        <!-- Slicknav -->
+        <link rel="stylesheet" href="css/slicknav.min.css">
+        <!-- Owl Carousel CSS -->
+        <link rel="stylesheet" href="css/owl-carousel.css">
+        <!-- Datepicker CSS -->
+        <link rel="stylesheet" href="css/datepicker.css">
+        <!-- Animate CSS -->
+        <link rel="stylesheet" href="css/animate.min.css">
+        <!-- Magnific Popup CSS -->
+        <link rel="stylesheet" href="css/magnific-popup.css">
+        
+        <!-- Medipro CSS -->
+        <link rel="stylesheet" href="css/normalize.css">
+        <link rel="stylesheet" href="style.css">
+        <link rel="stylesheet" href="css/responsive.css">
+        <style>
+    body {
+        font-family: 'Poppins', sans-serif;
+        background-color: #f5f5f5;
+        padding: 20px;
+    }
+
+    h1 {
+        text-align: center;
+        color: #333;
+    }
+
+    h3 {
+        margin-top: 20px;
+        color: #333;
+    }
+
+    form {
+        background-color: #fff;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+    }
+
+    label {
+        display: block;
+        font-weight: bold;
+        color: #333;
+        margin-top: 10px;
+    }
+
+    input[type="text"] {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    select {
+        width: 100%;
+        padding: 10px;
+        margin-top: 5px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    input[type="submit"] {
+        background-color: #007bff;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+
+    #pixQRCode {
+        text-align: center;
+    }
+
+    #qrCodeImg {
+        max-width: 100%;
+        height: auto;
+    }
+
+    .btn {
+        background-color: #9b59b6;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline-block;
+        text-decoration: none;
+    }
+
+    .btn:hover {
+        background-color: #8e44ad;
+    }
+
+</style>
+</head>
+<body>
+    <!-- Header Area -->
+    <header class="header">
+        <!-- Topbar -->
+        <div class="topbar">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-6 col-md-5 col-12">
+                        <!-- Contact EDUXA LOGOTIPO-->
+                        <a href="index.html">
+                            <img src=".\img\Logo_Eduxa_Digital_Horizontal_Fundo-Transparente_Branco.png" width="149" height="65.75">
+                        </a>
+                    </div>
+                    <div class="col-lg-6 col-md-7 col-12">
+                        <!-- Top Contact -->
+                        <!-- End Top Contact -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Topbar -->
+        <!-- Header Inner -->
+        <!--/ End Header Inner -->
+    </header>
+    
+    <h1>Informações de Pagamento</h1>
+    <h3>Cartão de crédito ou débito</h3>
+    <form action="ProcessarPagamento.php" method="POST">
+        <label for="numero_cartao">Número do cartão:</label>
+        <input type="text" id="numero_cartao" name="numero_cartao" required>
+        <br>
+        <label for="nome_titular">Nome do titular:</label>
+        <input type="text" id="nome_titular" name="nome_titular" required>
+        <br>
+        <label for="data_validade">Data de Validade:</label>
+        <input type="text" id="data_validade" name="data_validade" placeholder="MM/AA" required>
+        <br>
+        <label for="codigo_seguranca">Código de Segurança (CVV):</label>
+        <input type="text" id="codigo_seguranca" name="codigo_seguranca" required>
+        <br>
+        <label for="parcelamento">Parcelamento:</label>
+        <select id="parcelamento" name="parcelamento">
+            <option value="avista">À Vista</option>
+            <option value="2x">2x sem juros</option>
+            <option value="3x">3x sem juros</option>
+            <option value="4x">4x sem juros</option>
+            <option value="5x">5x sem juros</option>
+            <option value="6x">6x sem juros</option>
+            <option value="7x">7x sem juros</option>
+            <option value="8x">8x sem juros</option>
+        </select>
+        <br>
+        <input type="submit" value="Finalizar Compra">
+    </form>
+    <iframe name="ProcessarPagamento" src="payment_form.php"></iframe>
+    
+    <h3>Pagamento via PIX</h3>
+    <p>Clique no botão abaixo para gerar um QR Code para pagamento via PIX:</p>
+    <a href="#" id="gerarPixQRCode" class="btn">Gerar QR Code PIX</a>
+
+    <!-- Div para exibir o QR Code (inicialmente oculta) -->
+    <div id="pixQRCode" style="display: none;">
+        <img id="qrCodeImg" src="" alt="QR Code PIX">
+    </div>
+
+    <!-- Seu código JavaScript -->
+   
+    <script>
+       
+    </script>
+</body>
+</html>

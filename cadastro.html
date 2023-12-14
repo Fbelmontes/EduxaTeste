@@ -1,0 +1,573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro de aluno</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="./js/sessionDados.js"></script>
+    <style>
+/* Estilos para o conteúdo principal */
+.main-content {
+    max-width: 800px; /* Reduza a largura máxima do conteúdo principal em 20% */
+    margin: 0 auto; /* Centralize horizontalmente o conteúdo */
+    padding: 20px; /* Adicione algum espaço interno */
+}
+      header {
+    background: linear-gradient(to right, darkmagenta, #FF1493);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+    width: 100%;
+    position: relative;
+    z-index: 2;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    position: relative; /* Adicione esta linha */
+    z-index: 1; /* Adicione esta linha */
+}
+
+
+
+        
+
+        header img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        /* Estilização do logotipo da escola no body */
+        .responsive-image {
+            max-width: 100%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* Estilização do contêiner que envolve a imagem e o botão */
+        .container {
+            position: relative;
+            width: 100%; /* Ocupa a largura total do container pai */
+            text-align: center; /* Centraliza o conteúdo */
+        }
+
+
+        /* Estilização da imagem */
+        .container img {
+            max-width: 100%;
+            height: auto;
+        }
+
+
+
+
+
+/* Estilização do botão */
+.signup-button {
+    background: linear-gradient(to right, darkmagenta, #FF1493);
+    color: white;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 5px;
+    transition: background 0.3s;
+    font-family: "Comic Sans MS", cursive;
+    display: block;
+    margin: 0 auto;
+    margin-top: -20px; /* Mova o botão mais para cima em relação à imagem */
+}
+
+.signup-button:hover {
+    background: linear-gradient(to right, #FF1493, darkmagenta);
+}
+
+
+
+
+
+
+
+
+
+
+
+        /* Estilos para telas menores, como tablets e smartphones */
+@media screen and (max-width: 768px) {
+    header {
+        flex-direction: column; /* Empilhe os elementos verticalmente */
+        text-align: center; /* Centralize o texto */
+    }
+
+    header img {
+        margin-bottom: 4px; /* Reduza o espaço entre o logotipo e outros elementos */
+        max-width: 80%; /* Reduza a largura da imagem em 20% */
+    }
+
+    .signup-button {
+        position: static; /* Remova a posição absoluta para que o botão flua com o conteúdo */
+        margin-top: 4px; /* Ajuste a margem superior para mover o botão mais para cima */
+    }
+
+    /* Reduza o espaçamento interno das colunas */
+    .column {
+        padding: 4px; /* Reduza o espaçamento interno em 20% */
+        text-align: left; /* Alinhe o texto à esquerda */
+    }
+
+    /* Reduza o tamanho do texto nas colunas em 20% */
+    .column h2 {
+        font-size: 12.8px; /* Reduza o tamanho da fonte do cabeçalho em 20% */
+    }
+
+    /* Reduza o tamanho do texto nas labels em 20% */
+    .column label {
+        font-size: 9.6px; /* Reduza o tamanho da fonte das labels em 20% */
+    }
+
+    /* Reduza o tamanho do texto nos inputs e selecione em 20% */
+    .column input[type="text"],
+    .column input[type="email"],
+    .column input[type="tel"],
+    .column select {
+        font-size: 9.6px; /* Reduza o tamanho da fonte dos inputs e select em 20% */
+    }
+
+    /* Reduza o tamanho do botão em 20% */
+    .column .button {
+        font-size: 11.2px; /* Reduza o tamanho da fonte do botão em 20% */
+        padding: 5.6px 9.6px; /* Reduza o padding do botão em 20% */
+    }
+}
+
+        footer {
+            background-color: darkmagenta;
+            color: #fff;
+            text-align: center;
+            padding: 10px 0;
+        }
+
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            padding: 20px;
+        }
+
+        .column {
+            flex-basis: calc(50% - 20px);
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .column h2 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: darkmagenta;
+        }
+
+        .column label {
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .column input[type="text"],
+        .column input[type="email"],
+        .column input[type="tel"],
+        .column select {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+
+        .column .button {
+            background: linear-gradient(to right, darkmagenta, #FF1493);
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            padding: 10px 20px;
+            font-size: 18px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .column .button:hover {
+            background: linear-gradient(to right, #FF1493, darkmagenta);
+        }
+
+        @media screen and (max-width: 768px) {
+            .column {
+                flex-basis: 100%;
+            }
+        }
+
+
+.column {
+    text-align: left; /* Alinhe o texto à esquerda */
+}
+        /* Estilização do footer */
+        footer {
+            background: linear-gradient(to right, darkmagenta, #FF1493);
+            padding: 10px 0; /* Reduz a altura do footer */
+            color: white;
+            text-align: center;
+        }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-contact,
+        .footer-social,
+        .footer-payment {
+            flex-basis: calc(33.33% - 20px); /* Divide igualmente o espaço e adiciona margens */
+            margin: 10px;
+            text-align: left;
+        }
+
+        .footer-contact h3,
+        .footer-social h3,
+        .footer-payment h3 {
+            margin-bottom: 10px;
+            font-family: "Comic Sans MS", cursive;
+            color: white;
+        }
+
+        .footer-contact p,
+        .footer-social a {
+            color: white;
+            text-decoration: none;
+            margin-bottom: 5px;
+            font-family: "Comic Sans MS", cursive; /* Adicionando a fonte Comic Sans MS */
+        }
+
+        .footer-social img {
+            width: 32px;
+            height: 32px;
+            margin-right: 10px;
+        }
+
+        .footer-bottom {
+            margin-top: 10px; /* Reduz a margem superior */
+            font-size: 12px;
+            color: white;
+        }
+
+        /* Estilização das imagens no footer */
+        .image-container {
+            text-align: center;
+        }
+
+        .payment-image {
+            max-width: 80%; /* Reduz o tamanho das imagens */
+            height: auto;
+        }
+
+        /* Estilos para tornar o footer responsivo */
+        @media screen and (max-width: 100px) {
+            .footer-content {
+                flex-direction: column; /* Empilhe os elementos verticalmente em telas menores */
+                text-align: center;
+            }
+
+            .footer-contact,
+            .footer-social,
+            .footer-payment {
+                flex-basis: 100%; /* Largura total para telas menores */
+                margin-bottom: 20px; /* Adiciona espaço entre os elementos */
+            }
+        }
+    </style>
+    <style>
+    /* Estilização do container principal */
+    .container {
+        max-width: 700px; /* Defina a largura máxima que deseja para o container principal */
+        margin: 0 auto; /* Centralize horizontalmente o container principal */
+        padding: 20px; /* Adicione algum espaço interno para afastar o conteúdo das bordas */
+    }
+
+    /* Estilização dos containers filhos */
+    .column {
+        padding: 30px; /* Ajuste o espaçamento interno dos containers filhos */
+        border: 1px solid #ddd; /* Adicione uma borda para separar os containers */
+        border-radius: 5px; /* Cantos arredondados para os containers */
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Adicione uma sombra sutil */
+    }
+
+    /* Estilização das imagens no footer */
+    .payment-image {
+        max-width: 100%; /* Reduza o tamanho das imagens para ocupar a largura total do container */
+        height: auto; /* Ajuste a altura automaticamente para manter a proporção da imagem */
+    }
+</style>
+</head>
+
+<body>
+     <header>
+        <a href="index.html">
+            <img src=".\img\Logo_Eduxa_Digital_Horizontal_Fundo-Transparente_Branco.png" width="107.28" height="47.34" alt="Logo da Eduxa Digital">
+        </a>
+        
+    </header>
+    
+        <div class="container">
+        <form id="registration-form" action="https://api.sheetmonkey.io/form/ssBS4UY1UiieB9gRkqPBXq" method="POST">
+            <div class="column">
+                <h2>DADOS DO RESPONSÁVEL</h2>
+            <label for="nome">NOME:</label>
+            <input type="text" id="nome" name="nome" required>
+            
+            <label for="sobrenome">SOBRENOME:</label>
+            <input type="text" id="sobrenome" name="sobrenome" required>
+
+            <label for="cpf">CNPJ OU CPF:</label>
+            <input type="text" id="cpf" name="cpf" required>
+
+            <label for="rg">IE OU RG:</label>
+            <input type="text" id="rg" name="rg" required>
+            
+            <label for="email">E-MAIL:</label>
+            <input type="email" id="email" name="email" required>
+            
+            <label for="telefone">TELEFONE:</label>
+            <input type="tel" id="telefone" name="telefone" required>
+            
+            <label for="celular">CELULAR:</label>
+            <input type="tel" id="celular" name="celular" required>
+            
+            </div>
+
+            <div class="column">
+                 <h2>DADOS DO ENDEREÇO</h2>
+                <label for="cep">CEP:</label><button onclick="buscarEndereco()">Buscar</button>
+                <input type="text" id="cep" name="cep" required>
+                <style>
+                /* Estilos para o botão de busca */
+            button {
+                background-color: darkmagenta; /* Cor de fundo */
+                color: #fff; /* Cor do texto */
+                border: none; /* Remova a borda */
+                padding: 8px 12px; /* Espaçamento interno */
+                cursor: pointer; /* Cursor de mão ao passar o mouse */
+                border-radius: 4px; /* Cantos arredondados */
+            }
+
+    /* Estilo hover para o botão */
+    button:hover {
+        background-color: #FF1493; /* Cor de fundo alterada no hover */
+    }
+    </style>
+
+
+    
+            
+            <label for="endereco">ENDEREÇO:</label>
+            <input type="text" id="endereco" name="endereco" required>
+            
+            <label for="numero">NÚMERO:</label>
+            <input type="text" id="numero" name="numero" required>
+            
+            <label for="bairro">BAIRRO:</label>
+            <input type="text" id="bairro" name="bairro" required>
+            
+            <label for="cidade">CIDADE:</label>
+            <input type="text" id="cidade" name="cidade" required>
+            
+            <label for="pais">PAÍS:</label>
+            <input type="text" id="pais" name="pais" required>
+            
+            <label for="estado">ESTADO:</label>
+            <select id="estado" name="estado" required>
+                <option value="AC">Acre</option>
+                <option value="AL">Alagoas</option>
+                <option value="AP">Amapá</option>
+                <option value="AM">Amazonas</option>
+                <option value="BA">Bahia</option>
+                <option value="CE">Ceará</option>
+                <option value="DF">Distrito Federal</option>
+                <option value="ES">Espírito Santo</option>
+                <option value="GO">Goiás</option>
+                <option value="MA">Maranhão</option>
+                <option value="MT">Mato Grosso</option>
+                <option value="MS">Mato Grosso do Sul</option>
+                <option value="MG">Minas Gerais</option>
+                <option value="PA">Pará</option>
+                <option value="PB">Paraíba</option>
+                <option value="PR">Paraná</option>
+                <option value="PE">Pernambuco</option>
+                <option value="PI">Piauí</option>
+                <option value="RJ">Rio de Janeiro</option>
+                <option value="RN">Rio Grande do Norte</option>
+                <option value="RS">Rio Grande do Sul</option>
+                <option value="RO">Rondônia</option>
+                <option value="RR">Roraima</option>
+                <option value="SC">Santa Catarina</option>
+                <option value="SP">São Paulo</option>
+                <option value="SE">Sergipe</option>
+                <option value="TO">Tocantins</option>
+            </select>
+
+            
+
+
+        </div>
+
+        <div class="column">
+            <h2>DADOS DO ALUNO</h2>
+        <label for="nome">NOME ALUNO:</label>
+        <input type="text" id="nome" name="nomeAluno" required>
+                
+        <label for="modalidade">MODALIDADE</label>
+        <select name="modalidade" id="escolhaSerieAno">
+            <option value="Infantil"> Infantil </option>
+            <option value="Fundamental I"> Fundamental I </option>
+            <option value="Fundamental II"> Fundamental II </option>
+            <option value="Ensino Medio"> Ensino Medio </option>
+        </select>
+
+        <label for="serieano"> SERIE OU ANO</label>
+        <select name="SA" id="escolhaSerieAno">
+            <option value="1º"> 1º </option>
+            <option value="2º"> 2º </option>
+            <option value="3º"> 3º </option>
+            <option value="4º"> 4º </option>
+            <option value="5º"> 5º </option>
+            <option value="6º"> 6º </option>
+            <option value="7º"> 7º </option>
+            <option value="8º"> 8º </option>
+            <option value="9º"> 9º </option>
+        </select>
+        
+        </div>
+    </div>
+
+    
+
+    <div class="container">
+        <div class="column">
+            <button class="button" type="submit">CONCLUIR CADASTRO</button>
+        </div>
+        <!--  <div class="main-content">
+            <button onclick="redirecionarLogin()">Já possui conta? Clique aqui</button>
+        </div>
+        -->
+    </div>
+</form>
+    </div>
+    </div>
+    <footer>
+        <div class="footer-content">
+            <!-- Atendimento (2) -->
+            <div class="footer-contact">
+                <h3>Atendimento</h3>
+                <p>Telefone: (11) 91234-5678</p>
+                <p>Email: contato@eduxa.com</p>
+            </div>
+
+            <!-- Redes Sociais (3) -->
+            <div class="footer-social">
+                <h3>Redes Sociais</h3>
+                <a href="https://instagram.com/eduxa_assessoria?igshid=MzRlODBiNWFlZA==" target="_blank">
+                    <img src="img\instagram.png" alt="Instagram">
+                </a>
+            </div>
+
+            <!-- Formas de Pagamento (4) -->
+            <div class="footer-payment">
+                <h3>Formas de Pagamento</h3>
+                <div class="image-container">
+                    <img src="img\formasdepagamento.png" class="payment-image" alt="Formas de Pagamento">
+                </div>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 2023 LOJA EDUXA - Todos os direitos reservados | <a href="/privacy-policy">Política de Privacidade</a>
+        </div>
+    </footer>
+    <script>
+    function buscarEndereco() {
+        const cep = document.getElementById('cep').value;
+
+        // Verifique se o CEP possui o formato correto (8 dígitos)
+        if (/^\d{8}$/.test(cep)) {
+            fetch(`https://viacep.com.br/ws/${cep}/json/`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!data.erro) {
+                        // Preencha os campos com os dados do endereço
+                        document.getElementById('endereco').value = data.logradouro;
+                        document.getElementById('bairro').value = data.bairro;
+                        document.getElementById('cidade').value = data.localidade;
+                        document.getElementById('pais').value = 'Brasil'; // Se o país for sempre o Brasil
+                        document.getElementById('estado').value = data.uf;
+                    } else {
+                        alert('CEP não encontrado.');
+                    }
+                })
+                .catch(error => {
+                    console.error('Erro ao buscar CEP:', error);
+                });
+        } else {
+            alert('Formato de CEP inválido. Digite um CEP com 8 dígitos.');
+        }
+    }
+
+
+
+
+    // Seu código JavaScript existente ...
+
+// Função para lidar com o envio do formulário
+function enviarFormulario() {
+    // Aqui você pode adicionar lógica para validar os campos do formulário antes de prosseguir com o envio
+
+    // Suponha que todos os campos estejam corretos para este exemplo
+    const formularioValido = true;
+
+    if (formularioValido) {
+        // Se o formulário for válido, estilize os campos e exiba uma mensagem de sucesso
+        const campos = document.querySelectorAll('.column input');
+        campos.forEach((campo) => {
+            campo.style.border = '2px solid #4CAF50'; // Borda verde para campos corretos
+        });
+
+        // Exiba uma mensagem de sucesso
+        const mensagem = document.createElement('p');
+        mensagem.textContent = 'Cadastro concluído com sucesso!';
+        mensagem.style.color = '#4CAF50'; // Cor de texto verde
+        mensagem.style.fontWeight = 'bold';
+        mensagem.style.marginTop = '10px';
+
+        // Adicione a mensagem de sucesso ao formulário
+        const formulario = document.querySelector('form');
+        formulario.appendChild(mensagem);
+    }
+}
+
+// ...
+
+// Fim do seu código JavaScript existente
+
+</script>
+<script>
+        // Função para redirecionar para a página de login (substitua "login.html" pelo URL correto)
+        function redirecionarLogin() {
+            window.location.href = "produtos.html";
+        }
+    </script>
+</body>
+</html>
